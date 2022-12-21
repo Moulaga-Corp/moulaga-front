@@ -1,0 +1,17 @@
+.header {
+	width: 100%;
+	max-height: 100px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 50px;
+	background-color: hsl(0, 3%, 48%);
+	padding: 0 20px 0;
+
+	.appLogo {
+		font-family: "Squarefont";
+		font-size: x-large;
+		color: white;
+		white-space: nowrap;
+	}
+}
