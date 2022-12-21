@@ -2,6 +2,7 @@ import { providers } from "ethers";
 import { BrowserRouter } from "react-router-dom";
 import { createClient, WagmiConfig } from "wagmi";
 import "./App.css";
+import Navbar from "./components/navbar";
 import AppRouter from "./pages/AppRouter";
 
 const web3Client = createClient({
@@ -13,6 +14,7 @@ function App() {
   return (
     <WagmiConfig client={web3Client}>
       <BrowserRouter>
+        <Navbar/>
         <AppRouter/>
       </BrowserRouter>
     </WagmiConfig>

@@ -1,0 +1,33 @@
+.navbar {
+	width: 100vw;
+	max-height: 100px;
+	padding: 1em;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: row;
+		list-style-type: none;
+
+		li {
+			margin-right: 20px;
+
+			a {
+				transition: all ease-in 500ms;
+				font-weight: 500;
+				color: white;
+				font-size: large;
+				text-decoration: none;
+
+				&:hover {
+					font-weight: 800;
+				}
+
+				&.activeNav {
+					border-bottom: 2px solid white;
+				}
+			}
+		}
+	}
+}
