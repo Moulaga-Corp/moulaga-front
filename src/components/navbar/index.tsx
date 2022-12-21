@@ -18,11 +18,15 @@ function navbarItems(isConnected: boolean): readonly { name: string; url: string
 	return Object.freeze(items);
 }
 
-function Navbar() {
+interface NavbarProps {
+	className: string;
+}
+
+function Navbar({className}: NavbarProps) {
 	const { address, isConnected } = useAccount();
 	const menuItems = navbarItems(address !== undefined && isConnected);
 	return (
-		<nav className={styles.navbar}>
+		<nav className={`${styles.navbar} ${className}`}>
 			<ul>
 				{menuItems.map((item, index) => (<li>
 					<NavLink 
