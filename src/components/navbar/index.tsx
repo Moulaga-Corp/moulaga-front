@@ -28,7 +28,7 @@ function Navbar({className}: NavbarProps) {
 	return (
 		<nav className={`${styles.navbar} ${className}`}>
 			<ul>
-				{menuItems.map((item, index) => (<li>
+				{menuItems.map((item, index) => (<li key={index} >
 					<NavLink 
 						className={({ isActive }) => isActive ? styles.activeNav : "" } 
 						key={index} 

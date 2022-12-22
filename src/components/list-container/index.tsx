@@ -1,16 +1,17 @@
-import { ReactHTMLElement } from "react";
+import { ReactNode } from "react";
+import styles from "./index.module.scss";
 
 interface ListContainerProps {
 	placeholder: string;
-	children?: ReactHTMLElement<HTMLUListElement>[];
+	children?: ReactNode[];
 }
 
 function ListContainer({placeholder, children}: ListContainerProps) {
 	if (children === undefined || children.length === 0) {
-		return (<div><p>{placeholder}</p></div>);
+		return (<div className={styles.listContainer}><p>{placeholder}</p></div>);
 	}
 	return (
-		<div>
+		<div className={styles.listContainer}>
 			<ul>
 				{children}
 			</ul>

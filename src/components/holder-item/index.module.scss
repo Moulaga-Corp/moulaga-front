@@ -1,0 +1,20 @@
+.holderItem {
+	width: 100%;
+	height: fit-content;
+	padding: 1em;
+	border: 1px solid black;
+	border-radius: 25px;
+	display: flex;
+	flex-direction: column;
+
+	& > ul {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: fit-content;
+		display: flex;
+		flex-direction: row;
+		column-gap: 10px;
+		flex-wrap: wrap;
+	}
+}
