@@ -1,6 +1,6 @@
 import HolderItem from "../components/holder-item";
 import ListContainer from "../components/list-container";
-import { useGetHolders } from "../services/holders.mock";
+import { useGetHolders } from "../services/holders";
 
 function Holders() {
   const { data, error, isLoading } = useGetHolders();
@@ -19,8 +19,8 @@ function Holders() {
 
   return (
     <ListContainer placeholder={"No holders found !"}>
-      {data?.map(holder => (
-        <li><HolderItem name={holder.name} scopes={holder.scopes}/></li>
+      {data?.map((holder, index) => (
+        <li key={index}><HolderItem name={holder.name} scopes={holder.scopes}/></li>
       ))}
     </ListContainer>
   );

@@ -11,7 +11,7 @@ function HolderItem({name, scopes}: HolderItemProps) {
 		<div className={styles.holderItem}>
 			<p>{name}</p>
 			<ul>
-				{scopes.map(s => (<li><ScopeItem name={s}/></li>))}
+				{scopes.map((s, index) => (<li key={index}><ScopeItem name={s}/></li>))}
 			</ul>
 		</div>
 	);
