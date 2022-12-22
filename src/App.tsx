@@ -6,7 +6,7 @@ import AppRouter from "./pages/AppRouter";
 
 const web3Client = createClient({
   autoConnect: false,
-  provider: new providers.JsonRpcProvider(import.meta.env.VITE_NETWORK)
+  provider: new providers.JsonRpcProvider(import.meta.env.VITE_NETWORK, parseInt(import.meta.env.VITE_CHAIN_ID))
 });
 
 function App() {
