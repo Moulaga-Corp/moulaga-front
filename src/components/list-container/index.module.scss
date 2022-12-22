@@ -1,11 +1,17 @@
 .listContainer {
 	width: 50%;
 	margin: 20px auto;
+	padding: 20px 0;
 	box-shadow: 3px solid rgb(155, 153, 153);
 	flex-grow: 1;
 	color: black;
 	background-color: white;
 	overflow: hidden;
+
+	& > h2 {
+		font-size: xx-large;
+		text-align: center;
+	}
 
 	& > p {
 		font-size: x-large;

@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 
 const Home = lazy(() => import("./Home"));
 const Holders = lazy(() => import("./Holders"));
-const Consumers = lazy(() => import("./Consumers"));
+const AccessControl = lazy(() => import("./AccessControl"));
 
 function AppRouter() {
   const { address, isConnected } = useAccount();
@@ -26,9 +26,9 @@ function AppRouter() {
         {(!isConnected || address === undefined) ?
           <></> :
           <Route
-            key={"consumers"}
-            path={"/consumers"}
-            element={<Consumers/>}
+            key={"access-control"}
+            path={"/access-control"}
+            element={<AccessControl/>}
           />
         }
 

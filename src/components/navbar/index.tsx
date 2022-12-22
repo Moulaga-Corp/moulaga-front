@@ -12,7 +12,7 @@ function navbarItems(isConnected: boolean): readonly { name: string; url: string
 	}];
 
 	if (isConnected) {
-		items.push({ name: "Consumers", url: "/consumers" });
+		items.push({ name: "Access Control", url: "/access-control" });
 	}
 
 	return Object.freeze(items);

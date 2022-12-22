@@ -6,11 +6,11 @@ function Holders() {
   const { data, error, isLoading } = useGetHolders();
 
   if (isLoading) {
-    return (<ListContainer placeholder="Fetching data..."/>);
+    return (<ListContainer title="Holders" placeholder="Fetching data..."/>);
   }
 
   if (error) {
-    return (<ListContainer placeholder={
+    return (<ListContainer title="Holders" placeholder={
       typeof error.message === "string"
         ? error.message
         : String(error)
@@ -18,7 +18,7 @@ function Holders() {
   }
 
   return (
-    <ListContainer placeholder={"No holders found !"}>
+    <ListContainer title="Holders" placeholder={"No holders found !"}>
       {data?.map((holder, index) => (
         <li key={index}><HolderItem name={holder.name} scopes={holder.scopes}/></li>
       ))}

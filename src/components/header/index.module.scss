@@ -13,7 +13,7 @@
 
 	.headerItem:last-child {
 		margin-left: auto;
-		margin-right: 100px;
+		margin-right: 50px;
 	}
 
 	.appLogo {
@@ -23,17 +23,21 @@
 		white-space: nowrap;
 	}
 
-	.connectBtn {
+	& > button {
+		max-width: 200px;
 		display: inline-block;
+		text-overflow: ellipsis;
+		overflow: hidden;
 		margin-top: auto;
 		margin-bottom: auto;
 		white-space: nowrap;
-	}
+		background-color: transparent;
+		border: 2px solid white;
+		transition: all ease-in-out 0.2s;
 
-	.disconnectBtn {
-		display: inline-block;
-		margin-top: auto;
-		margin-bottom: auto;
-		white-space: nowrap;
+		&:hover {
+			color: black;
+			background-color: white;
+		}
 	}
 }

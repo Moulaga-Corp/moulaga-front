@@ -16,8 +16,8 @@ function Header() {
 			<NavLink className={`${styles.appLogo} ${styles.headerItem}`} to={"/"}>Moulaga Protocol</NavLink>
 			<Navbar className={styles.headerItem}/>
 			{ address !== undefined && isConnected 
-				? <button className={`${styles.disconnectBtn} ${styles.headerItem}`} onClick={_ => disconnect()}>{address}</button>
-				: <button className={`${styles.connectBtn} ${styles.headerItem}`} onClick={_ => connect()}>Connect</button>
+				? <button className={styles.headerItem} onClick={_ => disconnect()}>{address}</button>
+				: <button className={styles.headerItem} onClick={_ => connect()}>Connect</button>
 			}
 		</header>
 	);
