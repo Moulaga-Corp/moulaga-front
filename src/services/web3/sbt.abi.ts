@@ -181,7 +181,13 @@ const SBT_ABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_feeder",
+				"type": "address"
+			}
+		],
 		"name": "getMintedSBTs",
 		"outputs": [
 			{
