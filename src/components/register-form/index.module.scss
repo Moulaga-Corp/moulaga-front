@@ -5,9 +5,9 @@
 	justify-content: space-evenly;
 
 	& > input {
-		color: white;
+		color: black;
 		font-size: large;
-		background-color: hsl(0, 0%, 48%);
-		padding: 1em;
+		background-color: hsl(0, 0%, 85%);
+		padding: 0.5em;
 	}
 }
