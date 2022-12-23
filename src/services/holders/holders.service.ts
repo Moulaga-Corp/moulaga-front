@@ -11,4 +11,9 @@ async function getHolders() {
 	}));
 }
 
-export { getHolders };
+async function isHolder(wallet: string) {
+	const [result]: [boolean] = await protocolContract.functions.isHolder(wallet);
+	return result;
+}
+
+export { getHolders, isHolder };

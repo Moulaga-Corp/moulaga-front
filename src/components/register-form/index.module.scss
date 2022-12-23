@@ -1,0 +1,13 @@
+.registerFrom {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+
+	& > input {
+		color: white;
+		font-size: large;
+		background-color: hsl(0, 0%, 48%);
+		padding: 1em;
+	}
+}

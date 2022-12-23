@@ -1,0 +1,21 @@
+.registration {
+	width: 50%;
+	height: fit-content;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	border-radius: 25px;
+
+	h2 {
+		text-align: center;
+	}
+
+	& > * {
+		min-height: 200px;
+		
+		&:first-child {
+			border-bottom: 1px solid black;
+		}
+	}
+}

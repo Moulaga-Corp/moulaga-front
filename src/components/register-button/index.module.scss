@@ -1,0 +1,10 @@
+.registerContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	& > button {
+		padding: 1em;
+		width: fit-content;
+	}
+}
