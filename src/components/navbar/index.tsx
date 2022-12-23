@@ -13,6 +13,7 @@ function navbarItems(isConnected: boolean): readonly { name: string; url: string
 
 	if (isConnected) {
 		items.push({ name: "Access Control", url: "/access-control" });
+		items.push({ name: "Onboarding", url: "/onboarding" });
 	}
 
 	return Object.freeze(items);
