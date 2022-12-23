@@ -29,7 +29,7 @@ function AppRouter() {
           <Route
             key={"access-control"}
             path={"/access-control"}
-            element={<AccessControl/>}
+            element={<AccessControl wallet={address}/>}
           />
         }
 

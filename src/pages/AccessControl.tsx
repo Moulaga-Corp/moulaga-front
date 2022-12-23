@@ -1,5 +1,48 @@
-function AccessControl() {
-  return (<h1>Access control page</h1>);
+import { MouseEvent as ReactMouseEvent, useState } from "react";
+import ListContainer from "../components/list-container";
+import SbtItem from "../components/sbt-item";
+import { useListSbts } from "../services/sbts";
+
+interface AccessControlProps {
+  wallet: string;
+}
+
+function AccessControl({wallet}: AccessControlProps) {
+  const { data, error, isLoading, mutate } = useListSbts(wallet);
+
+  function revokeToken(e: ReactMouseEvent<HTMLButtonElement, MouseEvent>, index: number) {
+    e.preventDefault();
+    if (data === undefined) {
+      return;
+    }
+    mutate(data.filter((_, idx) => idx !== index), { revalidate: false });
+  }
+
+  if (isLoading) {
+    return (<ListContainer title="Access control list" placeholder="Fetching data..."/>);
+  }
+
+  if (error) {
+    return (<ListContainer title="Access control list" placeholder={
+      typeof error.message === "string"
+        ? error.message
+        : String(error)
+    }/>);
+  }
+
+  return (
+    <ListContainer title="Access control list" placeholder={"No SBTs found !"}>
+      {data?.map((token, index) => (
+        <li key={index}>
+          <SbtItem 
+            tokenId={token.tokenId} 
+            holder={token.holder} 
+            consumer={token.consumer}
+            onRevoke={e => revokeToken(e, index)}/>
+        </li>
+      ))}
+    </ListContainer>
+  );
 }
 
 export default AccessControl;
