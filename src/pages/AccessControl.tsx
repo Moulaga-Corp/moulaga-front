@@ -1,10 +1,7 @@
-import { BigNumber } from "ethers";
 import { MouseEvent as ReactMouseEvent } from "react";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import ListContainer from "../components/list-container";
 import SbtItem from "../components/sbt-item";
 import { useListSbts } from "../services/sbts";
-import SBT_ABI from "../services/web3/sbt.abi";
 
 interface AccessControlProps {
   wallet: string;
@@ -12,24 +9,18 @@ interface AccessControlProps {
 
 function AccessControl({wallet}: AccessControlProps) {
   const { data, error, isLoading, mutate } = useListSbts(wallet);
-  const { config } = usePrepareContractWrite({
-    address: import.meta.env.VITE_SBT_ADDRESS,
-    abi: SBT_ABI,
-    functionName: "burn",
-  })
-  const { write } = useContractWrite(config);
 
   function revokeToken(e: ReactMouseEvent<HTMLButtonElement, MouseEvent>, index: number) {
     e.preventDefault();
-    if (data === undefined || write === undefined) {
+    if (data === undefined) {
       return;
     }
 
-    write({ recklesslySetUnpreparedArgs: [BigNumber.from(data[index].tokenId)] })
+    //write({ recklesslySetUnpreparedArgs: [BigNumber.from(tokenId)] })
     mutate(data.filter((_, idx) => idx !== index), { revalidate: false });
   }
 
-  if (isLoading) {
+  if (isLoading || data === undefined) {
     return (<ListContainer title="Access control list" placeholder="Fetching data..."/>);
   }
 
@@ -43,7 +34,7 @@ function AccessControl({wallet}: AccessControlProps) {
 
   return (
     <ListContainer title="Access control list" placeholder={"No SBTs found !"}>
-      {data?.map((token, index) => (
+      {data && data.map((token, index) => (
         <li key={index}>
           <SbtItem 
             tokenId={token.tokenId} 
