@@ -1,6 +1,6 @@
 import useSWR from "swr";
-import { getMockHolders } from "./holders.mock";
-import { getHolders } from "./holders.service";
+import { getMockHolders, isMockHolder } from "./holders.mock";
+import { getHolders, isHolder } from "./holders.service";
 
 const isDev = import.meta.env.DEV;
 const getHolderFetcher = isDev
@@ -12,4 +12,9 @@ function useGetHolders() {
 	return { data, error, isLoading };
 }
 
-export { useGetHolders }
+const isHolderCheck = isDev ? isMockHolder : isHolder
+
+export { 
+	useGetHolders,
+	isHolderCheck
+}

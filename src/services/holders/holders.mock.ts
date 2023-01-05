@@ -6,6 +6,6 @@ const mockHolders = [
 
 const getMockHolders = () => new Promise(resolve => setTimeout(resolve, 5000)).then(() => mockHolders);
 
-const isMockHolder = (wallet: string) => new Promise<boolean>(resolve => setTimeout(() => resolve(false), 3000));
+const isMockHolder = (wallet: string) => new Promise<boolean>(resolve => setTimeout(() => resolve(false), 5000));
 
 export { getMockHolders, isMockHolder };
