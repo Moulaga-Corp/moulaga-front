@@ -1,29 +1,21 @@
+import LoadingComponent from "../common/loading-commponent";
 import HolderItem from "../components/holder-item";
 import ListContainer from "../components/list-container";
-import { useGetHolders } from "../services/holders";
+import { getHoldersFetcher } from "../services/holders";
 
 function Holders() {
-  const { data, error, isLoading } = useGetHolders();
-
-  if (isLoading) {
-    return (<ListContainer title="Holders" placeholder="Fetching data..."/>);
-  }
-
-  if (error) {
-    return (<ListContainer title="Holders" placeholder={
-      typeof error.message === "string"
-        ? error.message
-        : String(error)
-    }/>);
-  }
-
-  return (
-    <ListContainer title="Holders" placeholder={"No holders found !"}>
-      {data?.map((holder, index) => (
-        <li key={index}><HolderItem name={holder.name} scopes={holder.scopes}/></li>
-      ))}
-    </ListContainer>
-  );
+  return <LoadingComponent
+    initializedUI={<></>}
+    loadingUI={<ListContainer title="Holders" placeholder="Retrieving holders..."/>}
+    successUI={data => {
+      return <ListContainer title="Holders" placeholder={"No holders found !"}>
+        {data.map((holder, index) => (
+          <li key={index}><HolderItem name={holder.name} scopes={holder.scopes}/></li>
+        ))}
+      </ListContainer>;
+    }}
+    errorUI={err => <ListContainer title="Holders" placeholder={err.message}/>}
+    dataFetcher={() => getHoldersFetcher()} />;
 }
 
 export default Holders;
