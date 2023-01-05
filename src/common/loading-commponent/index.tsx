@@ -16,7 +16,9 @@ interface LoadingComponentProps<A> {
 	loadingUI: LoadingUI;
 	successUI: SuccessUI<A>;
 	errorUI: ErrorUI;
-	dataFetcher: () => Promise<A>
+	dataFetcher: () => Promise<A>;
+	onSuccess?: (data: A) => void;
+	onError?: (err: Error) => void;
 }
 
 function LoadingComponent<A>(props: LoadingComponentProps<A>) {
@@ -25,7 +27,10 @@ function LoadingComponent<A>(props: LoadingComponentProps<A>) {
 	useEffect(() => {
 		setState({ type: "Loading" });
 		props.dataFetcher()
-			.then(data => setState({ type: "Success", data }))
+			.then(data => {
+				props.onSuccess?.(data);
+				setState({ type: "Success", data })
+			})
 			.catch(err => setState({ type: "Failure", error: err }))
 	}, []);
 

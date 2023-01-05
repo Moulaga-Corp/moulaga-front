@@ -1,4 +1,3 @@
-import useSWR from "swr";
 import { listMockSbts } from "./sbts.mock";
 import { listSbts } from "./sbts.service";
 
@@ -8,9 +7,4 @@ const listSbtsFetcher = isDev
 	? listMockSbts
 	: listSbts;
 
-function useListSbts(wallet: string) {
-	const { data, error, isLoading, mutate } = useSWR(wallet, listSbtsFetcher);
-	return { data, error, isLoading, mutate };
-}
-
-export { useListSbts }
+export { listSbtsFetcher }

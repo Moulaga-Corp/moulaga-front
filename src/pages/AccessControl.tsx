@@ -1,50 +1,45 @@
-import { MouseEvent as ReactMouseEvent } from "react";
+import { MouseEvent as ReactMouseEvent, useState } from "react";
+import LoadingComponent from "../common/loading-commponent";
 import ListContainer from "../components/list-container";
 import SbtItem from "../components/sbt-item";
-import { useListSbts } from "../services/sbts";
+import { listSbtsFetcher } from "../services/sbts";
 
 interface AccessControlProps {
   wallet: string;
 }
 
 function AccessControl({wallet}: AccessControlProps) {
-  const { data, error, isLoading, mutate } = useListSbts(wallet);
+  const [tokens, setTokens] = useState<{tokenId: number; holder: string, consumer: string;}[]>([]);
 
   function revokeToken(e: ReactMouseEvent<HTMLButtonElement, MouseEvent>, index: number) {
     e.preventDefault();
-    if (data === undefined) {
+    if (index < 0 || tokens.length <= index) {
+      console.log("nope")
       return;
     }
-
-    //write({ recklesslySetUnpreparedArgs: [BigNumber.from(tokenId)] })
-    mutate(data.filter((_, idx) => idx !== index), { revalidate: false });
+    console.log("filtering")
+    setTokens(tokens.filter((_, idx) => idx !== index));
   }
 
-  if (isLoading || data === undefined) {
-    return (<ListContainer title="Access control list" placeholder="Fetching data..."/>);
-  }
-
-  if (error) {
-    return (<ListContainer title="Access control list" placeholder={
-      typeof error.message === "string"
-        ? error.message
-        : String(error)
-    }/>);
-  }
-
-  return (
-    <ListContainer title="Access control list" placeholder={"No SBTs found !"}>
-      {data && data.map((token, index) => (
-        <li key={index}>
-          <SbtItem 
-            tokenId={token.tokenId} 
-            holder={token.holder} 
-            consumer={token.consumer}
-            onRevoke={e => revokeToken(e, index)}/>
-        </li>
-      ))}
-    </ListContainer>
-  );
+  return <LoadingComponent
+    initializedUI={<></>}
+    loadingUI={<ListContainer title="Access control list" placeholder="Retrieving granted sbts..."/>}
+    successUI={_ => {
+      return <ListContainer title="Access control list" placeholder={"No SBTs found !"}>
+        {tokens.map((token, index) => (
+          <li key={index}>
+            <SbtItem 
+              tokenId={token.tokenId} 
+              holder={token.holder} 
+              consumer={token.consumer}
+              onRevoke={e => revokeToken(e, index)}/>
+          </li>
+        ))}
+      </ListContainer>
+    }}
+    errorUI={err => <ListContainer title="Access control list" placeholder={err.message}/>}
+    dataFetcher={() => listSbtsFetcher(wallet)}
+    onSuccess={d => setTokens(d)} />;
 }
 
 export default AccessControl;
