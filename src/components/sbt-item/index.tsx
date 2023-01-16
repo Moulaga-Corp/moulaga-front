@@ -12,13 +12,13 @@ interface SbtItemProps {
 }
 
 function SbtItem({tokenId, holder, consumer, onRevoke}: SbtItemProps) {
-	// const { config } = usePrepareContractWrite({
-  //   address: import.meta.env.VITE_SBT_ADDRESS,
-  //   abi: SBT_ABI,
-  //   functionName: "burn",
-	// 	args: [BigNumber.from(tokenId)]
-  // })
-  // const { write } = useContractWrite(config);
+	const { config } = usePrepareContractWrite({
+    address: import.meta.env.VITE_SBT_ADDRESS,
+    abi: SBT_ABI,
+    functionName: "burn",
+		args: [BigNumber.from(tokenId)]
+  })
+  const { write } = useContractWrite(config);
 	
 	return (
 	<div className={styles.sbtItem}>
@@ -27,7 +27,10 @@ function SbtItem({tokenId, holder, consumer, onRevoke}: SbtItemProps) {
 			<p>Holder: {holder}</p>
 			<p>Consumer: {consumer}</p>
 		</div>
-		<button onClick={e => {/*write?.(); */onRevoke(e);}}>Revoke</button>
+		<button onClick={e => {
+			write?.(); 
+			onRevoke(e);
+		}}>Revoke</button>
 	</div>
  );
 }
