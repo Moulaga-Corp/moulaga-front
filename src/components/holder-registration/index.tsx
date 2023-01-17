@@ -24,7 +24,7 @@ function RegisterForm() {
 			}
 			write?.();
 		}}>
-			<input type="text" onChange={e => {
+			<input type="text" placeholder="Holder name" onChange={e => {
 				e.preventDefault();
 				setHolderName(e.currentTarget.value);
 			}}/>

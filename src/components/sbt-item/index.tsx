@@ -5,7 +5,7 @@ import SBT_ABI from "../../services/web3/sbt.abi";
 import styles from "./index.module.scss";
 
 interface SbtItemProps {
-	tokenId: number;
+	tokenId: string;
 	holder: string;
 	consumer: string;
 	onRevoke: (e: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void;

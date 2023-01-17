@@ -9,7 +9,7 @@ interface AccessControlProps {
 }
 
 function AccessControl({wallet}: AccessControlProps) {
-  const [tokens, setTokens] = useState<{tokenId: number; holder: string, consumer: string;}[]>([]);
+  const [tokens, setTokens] = useState<{tokenId: string; holder: string, consumer: string;}[]>([]);
 
   function revokeToken(e: ReactMouseEvent<HTMLButtonElement, MouseEvent>, index: number) {
     e.preventDefault();

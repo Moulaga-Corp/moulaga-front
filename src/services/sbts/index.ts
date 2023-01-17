@@ -1,10 +1,11 @@
 import { listMockSbts } from "./sbts.mock";
 import { listSbts } from "./sbts.service";
 
-const isDev = import.meta.env.DEV;
+// const isDev = import.meta.env.DEV;
 
-const listSbtsFetcher = isDev 
-	? listMockSbts
-	: listSbts;
+// const listSbtsFetcher = isDev 
+// 	? listMockSbts
+// 	: listSbts;
+const listSbtsFetcher = listSbts;
 
 export { listSbtsFetcher }
